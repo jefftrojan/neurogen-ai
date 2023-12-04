@@ -1,0 +1,6 @@
+streamlit
+librosa
+numpy
+joblib
+pydub
+xgboost
