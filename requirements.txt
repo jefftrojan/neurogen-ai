@@ -5,5 +5,3 @@ joblib
 pydub
 xgboost
 matplotlib
-sqlite3 
-hashlib
