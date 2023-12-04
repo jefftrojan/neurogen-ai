@@ -1,23 +1,26 @@
 ---
-title: Flask
-description: A popular minimal server framework for Python
+title: Neurogen Ai
+description: A simple web application that uses machine learning to predict the likelyhood of getting Parkinsons Disease based on the input of a user's voice
 tags:
   - python
   - flask
+  - streamlit
+  - xgboost
+  - numpy
+  - scikitlearn
+  - librosa
 ---
 
-# Python Flask Example
+# Deployment Live 
 
-This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/) app that serves a simple JSON response.
-
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/zUcpux)
+[![Deployment](https://neurogen.streamlit.io)](https://neurogen.streamlit.io)
 
 ## ✨ Features
 
-- Python
-- Flask
+- Audio record upload
+- Prediction from audio
 
 ## 💁‍♀️ How to use
 
-- Install Python requirements `pip install -r requirements.txt`
-- Start the server for development `python3 main.py`
+- Make the runner executable `chmod u+x runner.sh`
+- install dependencies and start the streamlit server`./runner.sh`
