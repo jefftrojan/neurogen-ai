@@ -4,6 +4,18 @@ import numpy as np
 import joblib
 from pydub import AudioSegment
 import xgboost
+import matplotlib.pyplot as plt
+import shutil
+import os
+
+# Function to check if ffmpeg is installed
+def is_ffmpeg_installed():
+    try:
+        shutil.which("ffmpeg")
+        return True
+    except FileNotFoundError:
+        return False
+
 # Function to extract features from an audio file
 def extract_features(audio_path):
     # Load audio file
@@ -42,6 +54,11 @@ def predict_parkinsons(features):
 def main():
     st.set_page_config(page_title="Neurogen", page_icon=":smiley:")
 
+    # Check if ffmpeg is installed
+    if not is_ffmpeg_installed():
+        st.error("Your system shows you do not have ffmpeg installed, you need to have ffmpeg or an alternative installed to run this application.")
+        return
+
     st.title("Parkinson's Prediction App")
 
     # Navigation
@@ -66,14 +83,13 @@ def main():
         st.header("Welcome to Parkinson's Prediction App")
         st.write(
             "This app allows you to upload an audio file, extract relevant features, "
-            "and predict the likelihood of Parkinson's disease based on those features."
-            "The app uses AI to make the predictions with an average of ~94.8% accuracy"
+            "and predict the likelihood of Parkinson's disease based on those features. "
+            "The app uses AI to make the predictions with an average of ~94.8% accuracy. "
             "This app is not a replacement for medical opinion, for further assistance on Parkinsons,\nkindly speak to a doctor."
-
         )
         st.write(
-            "To get started, click on 'Predictor' in the navigation bar on the left and upload your audio file."
-            "Click the arrow icon (on your extreme left corner) to toggle menu on small screens"
+            "To get started, click on 'Predictor' in the navigation bar on the left and upload your audio file. "
+            "Click the arrow icon (on your extreme left corner) to toggle the menu on small screens."
         )
 
     elif page_selection == "Predictor":
@@ -101,6 +117,38 @@ def main():
                 st.error("High likelihood of Parkinson's disease. Please consult with a healthcare professional.")
             else:
                 st.success("Low likelihood of Parkinson's disease. Regular monitoring is still recommended.")
+
+            # Visualization of extracted features
+            st.subheader("Extracted Features Visualization")
+
+            # Plotting the bar chart
+            feature_names = [
+                "Zero Crossing Rate",
+                "Spectral Centroid",
+                "Spectral Bandwidth",
+                "Spectral Rolloff",
+                "MFCC 1",
+                "MFCC 2",
+                "MFCC 3",
+                "MFCC 4",
+                "MFCC 5",
+                "MFCC 6",
+                "MFCC 7",
+                "MFCC 8",
+                "MFCC 9",
+                "MFCC 10",
+                "MFCC 11",
+                "MFCC 12",
+                "MFCC 13",
+                "MFCC 14",
+            ]
+
+            plt.figure(figsize=(10, 6))
+            plt.bar(feature_names, extracted_features)
+            plt.xlabel("Feature")
+            plt.ylabel("Value")
+            plt.title("Extracted Features")
+            st.pyplot(plt)
 
             # Allow users to upload another file
             if st.button("Upload Another File"):
