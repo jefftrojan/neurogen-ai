@@ -13,7 +13,7 @@ tags:
 
 # Deployment Live 
 
-[![Deployment](https://neurogen.streamlit.io)](https://neurogen.streamlit.io)
+[![Deployment](https://neurogen.streamlit.app)](https://neurogen.streamlit.app)
 
 ## ✨ Features
 
@@ -23,7 +23,10 @@ tags:
 ## 💁 How to use
 
 - Make the runner executable `chmod u+x runner.sh`
-- install dependencies and start the streamlit server`./runner.sh`
+- install dependencies and start the streamlit server `./runner.sh`
 
 ### Note
-``` You need to have ffmpeg installed to be able to run this programlocally, visit https://formulae.brew.sh/formula/ffmpeg#default to learn more about how you can install ffmpeg```
+``` 
+You need to have ffmpeg installed to be able to run this programlocally, visit https://formulae.brew.sh/formula/ffmpeg#default to learn more about how you can install ffmpeg 
+
+```
